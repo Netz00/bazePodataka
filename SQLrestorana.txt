@@ -184,3 +184,16 @@ WHERE  (jelo.naziv) <>  ALL (
 	JOIN namirnice ON namirnice.id = jelonamirnice.id_namirnice
 	WHERE jelonamirnice.kolicina > namirnice.raspoloziva_kol 
 );
+
+
+/*dodaj racun pomocu samo naziva jela*/
+with rows as (
+INSERT INTO racun DEFAULT VALUES RETURNING id
+)
+INSERT INTO jeloracun(id_jelo,id_racun) 
+VALUES
+((SELECT jelo.id FROM jelo WHERE jelo.naziv='Mjesana Pizza'),(SELECT id FROM rows)),
+((SELECT jelo.id FROM jelo WHERE jelo.naziv='Margarita Pizza'),(SELECT id FROM rows)),
+((SELECT jelo.id FROM jelo WHERE jelo.naziv='Peceno'),(SELECT id FROM rows)),
+((SELECT jelo.id FROM jelo WHERE jelo.naziv='Palacinke'),(SELECT id FROM rows));
+
