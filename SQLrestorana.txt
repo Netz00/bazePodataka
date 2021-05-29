@@ -32,7 +32,7 @@ CREATE TABLE Namirnice (
     raspoloziva_kol     REAL,
     rok_trajanja        DATE,
     nabavna_cijena      REAL,
-    CONSTRAINT POZITIVNA_VRIJEDNOST CHECK (raspoloziva_kol>0 AND nabavna_cijena>0),
+    CONSTRAINT POZITIVNA_VRIJEDNOST CHECK (raspoloziva_kol>=0 AND nabavna_cijena>0),
     CONSTRAINT DATUM_NAKON CHECK (rok_trajanja>now())
 
 );
